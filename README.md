@@ -1,23 +1,38 @@
-# Personal Static Landing Page
+# My Personal Blog
 
-My personal website, built with [React](https://github.com/facebook/create-react-app).
+[This website](https://kylieis.online) serves as my personal blog. I post about the various programming things I've learned/am learning, Notion tips (can't be avoided), and some scattered things in between.
 
-Check out the live view → [kyliestewart.tech](https://kyliestewart.tech/).
+Built with Gatsby! This was originally a fork of [@JaeYeopHan](https://github.com/JaeYeopHan)'s [bee-starter](https://github.com/JaeYeopHan/gatsby-starter-bee).
 
-## Development
+## Creating a New Post
+
+There's a CLI for that! ™️
 
 ```sh
-git clone git@github.com:kale-stew/kale-stew.github.io.git
-cd kale-stew.github.io
-yarn
-yarn start
+$ yarn run new-post
+```
+
+In the case we don't take the CLI route, every valid blog post needs a proper header:
+
+```md
+---
+title: <String>
+date: 2020-00-00 00:00:00
+category: <String>
+draft: <Bool>
+---
 ```
 
 ## Deployment
 
-```sh
-git checkout source
-yarn deploy
-```
+CI takes care of deploy on merge to master.
 
-If you want to deploy this app as your own Github User page and you run into any problems, check out [this guide](https://dev.to/javascripterika/deploy-a-react-app-as-a-github-user-page-with-yarn-3fka) to getting a static deployment set up in your own repository.
+However, manual deployments are sometimes necessary:
+
+```sh
+$ yarn run gatsby clean
+$ yarn run gatsby build --prefix-paths && gh-pages -d public
+
+# or, use the short version
+$ yarn run deploy
+```
