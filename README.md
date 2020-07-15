@@ -1,8 +1,8 @@
 # My Personal Blog
 
-[This website](https://kylieis.online) serves as my personal blog. I post about the various programming things I've learned/am learning, Notion tips (can't be avoided), and some scattered things in between.
+[This website](https://kylieis.online) serves as my personal landing page. This repo also hosts the code for my blog, where I post about the various programming things I've learned/am learning, general productivity tips, and some scattered things in between.
 
-Built with Gatsby! This was originally a fork of [@JaeYeopHan](https://github.com/JaeYeopHan)'s [bee-starter](https://github.com/JaeYeopHan/gatsby-starter-bee).
+Built with Gatsby! This was originally a fork of [@JaeYeopHan](https://github.com/JaeYeopHan)'s [bee-starter](https://github.com/JaeYeopHan/gatsby-starter-bee), but it's evolved a bit since the initial fork.
 
 ## Creating a New Post
 

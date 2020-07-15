@@ -55,6 +55,7 @@
     "react-scripts": "3.2.0",
     "react-social-icons": "^4.1.0",
     "react-switch": "^5.0.0",
+    "react-typography": "^0.16.19",
     "smooth-scroll": "^16.0.0",
     "typeface-fira-sans": "^0.0.75",
     "typography": "^0.16.17",

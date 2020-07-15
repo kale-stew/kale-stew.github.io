@@ -20,7 +20,10 @@ class NotFoundPage extends React.Component {
         </p>
         <h2>Please allow Otis to guide you back home:</h2>
         <a href="https://kyliestewart.tech/blog">
-          <img src={WanderingOtis} />
+          <img
+            src={WanderingOtis}
+            alt="An image of a black dog walking off into the horizon"
+          />
         </a>
       </Layout>
     )
