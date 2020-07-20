@@ -12,9 +12,9 @@
     "deploy": "gatsby clean && gatsby build && gh-pages -b master -d public",
     "dev": "gatsby develop",
     "start": "yarn run dev",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*/**.{js,jsx,scss}' 'gatsby-*.js'",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*/**.{js,jsx,scss}' 'gatsby-*.js' 'cli/*.js'",
     "lint": "eslint --ext .js,.jsx --ignore-pattern public .",
-    "new-post": "node ./cli/create-new-post.js"
+    "new-now": "node ./cli/new-now.js"
   },
   "dependencies": {
     "gatsby": "^2.2.8",

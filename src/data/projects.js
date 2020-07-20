@@ -2,7 +2,7 @@ const projects = [
   {
     title: 'Talks',
     subtitle: 'All of my talks, in one place',
-    link: 'https://kylieis.online/talks',
+    link: '/talks',
   },
   {
     title: 'Blog',
@@ -12,7 +12,7 @@ const projects = [
   {
     title: 'Now',
     subtitle: "What I'm doing *now*",
-    link: 'https://kylieis.online/now',
+    link: '/now',
   },
 ]
 
