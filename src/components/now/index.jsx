@@ -1,6 +1,8 @@
 import React from 'react'
+import { StaticQuery, graphql } from 'gatsby'
+import { formatDate } from '../../utils/dates'
 
-const ITEMS = {
+const NOW_KEYS = {
   location: 'Location',
   travel: 'Upcoming Travel',
   reading: 'Reading',
@@ -11,13 +13,47 @@ const ITEMS = {
   workingOn: 'Working On',
 }
 
-export const NowCard = ({ item }) => {
-  const title = ITEMS[item[0]]
-  const text = item[1]
+export const Now = () => (
+  <StaticQuery
+    query={nowQuery}
+    render={data => {
+      const { now } = data
 
-  return (
-    <li>
-      <b>{title}:</b> {text}
-    </li>
-  )
-}
+      return (
+        <>
+          <h2>{formatDate(now.date)}</h2>
+          <ul className="now-wrapper">
+            {Object.entries(now).map(([key, value]) => {
+              if (!NOW_KEYS[key] || !value) {
+                return
+              }
+
+              return (
+                <li>
+                  <b>{NOW_KEYS[key]}:</b> {value}
+                </li>
+              )
+            })}
+          </ul>
+        </>
+      )
+    }}
+  />
+)
+
+const nowQuery = graphql`
+  query NowQuery {
+    now {
+      id
+      date
+      location
+      travel
+      reading
+      celebrating
+      watching
+      listeningTo
+      learning
+      workingOn
+    }
+  }
+`

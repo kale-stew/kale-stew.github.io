@@ -1,23 +1,14 @@
 import React from 'react'
 import { Layout } from '../layout'
 import { Head } from '../components/head'
-import { NowCard } from '../components/now'
-import { formatNowDate, getMostRecentDate } from '../utils/dates'
-
-import posts from '../data/now.js'
-
-const mostRecentDate = getMostRecentDate(posts)
-const mostRecentPost = Object.entries(posts[mostRecentDate])
+import { Now } from '../components/now'
 
 export default ({ location }) => (
   <Layout location={location} title="What I'm Doing *Now*">
     <Head title="Now" />
-    <h2>{formatNowDate(mostRecentDate)}</h2>
-    <ul className="now-wrapper">
-      {mostRecentPost.map(item => (
-        <NowCard item={item} />
-      ))}
-    </ul>
+    <Now />
     <a href="https://nownownow.com/about">What is this page?</a>
+    {/* <br /> */}
+    {/* <a>Visit a random now from the past</a> */}
   </Layout>
 )
