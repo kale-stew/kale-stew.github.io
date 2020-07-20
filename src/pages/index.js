@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import { Layout } from '../layout'
 import { Head } from '../components/head'
 import { Intro } from '../components/intro'
-import { ProjectCard } from '../components/card'
+import { ProjectCard } from '../components/project'
 
 import projects from '../data/projects'
 
