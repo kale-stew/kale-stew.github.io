@@ -23,22 +23,6 @@ export default ({ location }) => {
     <Layout location={location} title="Presentations">
       <Head title="Talks" />
       <h3>All of my talks, slides, and abstracts, in one place.</h3>
-      {/* <select name="filter" id="filter-select" onChange={handleSelect}>
-        <option value="" default>
-          Sort by...
-        </option>
-        {FILTERS.map(filter => {
-          return (
-            <option
-              value={filter.name}
-              key={filter.name}
-              onChange={() => setFilter(filter.function)}
-            >
-              {filter.name}
-            </option>
-          )
-        })}
-      </select> */}
       <div className="talk-wrapper">
         {filteredTalks.map(t => (
           <TalkCard talk={t} key={t.eventDate} />

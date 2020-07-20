@@ -21,7 +21,7 @@ GitHubTheme.overrideThemeStyles = () => {
       fontWeight: 550,
       fontSize: '2.5rem',
       lineHeight: 1.2,
-      fontFamily: 'Fira Sans',
+      fontFamily: 'Fira Sans'
     },
 
     h2: {

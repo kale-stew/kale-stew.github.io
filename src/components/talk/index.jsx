@@ -1,44 +1,13 @@
 import React from 'react'
 import { formatDate } from '../../utils/filters'
 
-// const CardWrapper = styled('div')`
-//   display: flex;
-//   flex-direction: column;
-//   width: 260px;
-
-//   @media (max-width: 1024px) {
-//     margin-bottom: 3rem;
-//   }
-// `
-
-// const EventInfo = styled('div')`
-//   padding: 2rem 0;
-// `
-
-// const ImgWrapper = styled('div')``
-
-// const TalkDescription = styled('span')`
-
-// `
-
-// const TalkTitle = styled('span')`
-//   width: 300px;
-//   align-self: center;
-//   font-size: 28px;
-//   font-weight: 300;
-//   padding-bottom: 0.45rem;
-// `
+import './index.scss'
 
 export const TalkCard = ({ talk }) => (
-  <div>
+  <div className="talk">
     <h2>{talk.title}</h2>
-    <div className="tak-description">{talk.description}</div>
-    {/* {talk.eventType === 'meetup' ? (
-      <MeetupTag>MEETUP</MeetupTag>
-    ) : (
-      <ConferenceTag>CONFERENCE</ConferenceTag>
-    )} */}
-    <div>
+    <div className="talk-description">{talk.description}</div>
+    <div className="talk-event">
       <span>{talk.eventName} － </span>
       <span>{formatDate(talk.eventDate)}</span>
     </div>

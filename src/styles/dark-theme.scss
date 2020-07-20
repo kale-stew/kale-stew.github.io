@@ -17,9 +17,7 @@ body.dark {
     font-family: 'Fira Sans';
 
     h2 {
-      font-style: italic;
       font-size: 26px;
-      align-self: center;
     }
   }
 
@@ -37,7 +35,6 @@ body.dark {
   }
 
   .talk-wrapper {
-    margin-top: 2.9rem;
     display: grid;
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(3, auto);
