@@ -1,7 +1,16 @@
-export const THEME = {
-  LIGHT: 'light',
-  DARK: 'dark',
+export const NOW_KEYS = {
+  location: 'Location',
+  travel: 'Upcoming Travel',
+  reading: 'Reading',
+  celebrating: 'Celebrating (or About to Celebrate)',
+  watching: 'Watching',
+  listeningTo: 'Listening To',
+  learning: 'Learning (or Trying to Learn)',
+  workingOn: 'Working On',
 }
+
+export const LATEST = 'latest'
+export const RANDOM = 'random'
 
 export const SOCIALS = {
   Email: 'kylie@kyliestewart.tech',
@@ -9,4 +18,9 @@ export const SOCIALS = {
   Instagram: 'https://instagram.com/kalestews',
   LinkedIn: 'https://www.linkedin.com/in/kylieastewart/',
   Twitter: 'https://twitter.com/kyliestew',
+}
+
+export const THEME = {
+  LIGHT: 'light',
+  DARK: 'dark',
 }
