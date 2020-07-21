@@ -2,10 +2,10 @@ export const NOW_KEYS = {
   location: 'Location',
   travel: 'Upcoming Travel',
   reading: 'Reading',
-  celebrating: 'Celebrating (or About to Celebrate)',
+  celebrating: 'Celebrating',
   watching: 'Watching',
   listeningTo: 'Listening To',
-  learning: 'Learning (or Trying to Learn)',
+  learning: 'Learning',
   workingOn: 'Working On',
 }
 
