@@ -1,6 +1,7 @@
 [
   {
-    "date": "7/19/2020",
+    "date": "7/19th/2020",
+    "dayOfWeek": "Sunday",
     "location": "Still in quarantine, still at home.",
     "travel": "Hopefully, eventually?",
     "reading": "'Never Split the Difference: Negotiating as if Your Life Dependended on It' by Chris Voss, for a soft skills reading group.",
@@ -9,7 +10,8 @@
     "learning": "How to use k8s and docker to better implement staged deployments for a microservice-heavy ecosystem."
   },
   {
-    "date": "4/10/2020",
+    "date": "4/10th/2020",
+    "dayOfWeek": "Friday",
     "location": "In quarantine at home.",
     "travel": "Hopefully, eventually?",
     "reading": "Broad Band: The Untold Story of the Women Who Made the Internet by Claire Evans.",
@@ -20,7 +22,8 @@
     "workingOn": "The above mentioned rewrite, now that we've shipped Spectacle v6. 🎉"
   },
   {
-    "date": "1/5/2020",
+    "date": "1/5th/2020",
+    "dayOfWeek": "Sunday",
     "location": "At home in Denver, Colorado.",
     "travel": "Next month, to the 4th Annual Formidagathering (4midagathering, if you will) in Seattle, Washington.",
     "reading": "One Hundred Names for Love: A Memoir by Diane Ackerman. A little lighter than my last, Edible Woman by Margaret Atwood.",

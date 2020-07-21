@@ -9,7 +9,7 @@ import { LATEST, NOW_KEYS } from '../../constants'
 
 const NowCard = ({ post }) => (
   <>
-    <h2>{formatDate(post.date)}</h2>
+    <h2>{post.dayOfWeek}, {formatDate(post.date)}</h2>
     <ul className="now-wrapper">
       {Object.entries(post).map(([key, value]) => {
         return !NOW_KEYS[key] || !value ? null : (
@@ -26,6 +26,7 @@ NowCard.propTypes = {
   post: PropTypes.shape({
     celebrating: PropTypes.string,
     date: PropTypes.string,
+    dayOfWeek: PropTypes.string,
     learning: PropTypes.string,
     listeningTo: PropTypes.string,
     location: PropTypes.string,
@@ -64,6 +65,7 @@ const nowQuery = graphql`
     allNow {
       nodes {
         date
+        dayOfWeek
         location
         travel
         reading
