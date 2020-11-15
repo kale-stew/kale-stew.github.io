@@ -29,7 +29,7 @@ export const Footer = () => (
       style={{ height, width }}
     />
     <SocialIcon
-      url={SOCIALS.Email}
+      url={`mailto:${SOCIALS.Email}`}
       network="email"
       bgColor={bgColor}
       style={{ height, width }}
