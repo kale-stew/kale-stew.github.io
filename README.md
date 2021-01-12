@@ -4,8 +4,6 @@
 
 Built with Gatsby!
 
-![Website preview](./src/assets/preview.gif)
-
 ## Deployment
 
 CI takes care of deploy on merge to the default branch, `dev`. 🚀👨‍🚀

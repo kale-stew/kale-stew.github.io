@@ -12,8 +12,7 @@ export const Intro = () => (
       const {
         authorLocation,
         authorName,
-        company,
-        employer,
+        employment,
         hobbies,
         resume,
       } = data.site.siteMetadata
@@ -39,7 +38,7 @@ export const Intro = () => (
             <span role="img" aria-label="blonde female technologist emoji">
               👩‍💻
             </span>{' '}
-            I currently work at a {company} named <b>{employer}</b>
+            I currently work at as a <b>{employment}</b>
           </div>
           <div>
             (but if you want to work together, I'm{' '}
@@ -74,8 +73,7 @@ const introQuery = graphql`
       siteMetadata {
         authorLocation
         authorName
-        company
-        employer
+        employment
         hobbies
         resume
       }

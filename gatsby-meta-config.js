@@ -3,8 +3,7 @@ module.exports = {
   description: `Kylie Stewart is a Software Engineer at Formidable · Big fan of dogs, hiking, and climbing`,
   authorName: `Kylie Stewart`,
   authorLocation: `Denver, Colorado`,
-  company: `Javascript consultancy`,
-  employer: `Formidable`,
+  employment: `freelance Javascript consultant`,
   resume: `https://kyliestewart.tech`,
   hobbies: [
     `hike with my dog, Otis`,
