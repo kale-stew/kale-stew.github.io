@@ -1,8 +1,8 @@
 $top-header-text-color: #fff;
-$accent-pink: #e92d9e;
-$accent-purple: #291e95;
-$accent-light-purple: #6101a0;
-$theme-gradient: linear-gradient(72deg, $accent-purple, $accent-pink);
+$accent-orange: #ffbc2d;
+$accent-red: #e23500;
+$accent-off-red: #ff3300;
+$theme-gradient: linear-gradient(72deg, $accent-red, $accent-orange);
 $inline-dimmed-color: #ebebeb;
 $inline-text-color: #4b2043;
 
@@ -16,21 +16,21 @@ $light-gray: #aaa;
 //////////////////////////////
 // body
 $light-background-color: #fff;
-$light-link-color: $accent-purple;
+$light-link-color: $accent-red;
 $light-text-shadow: 0 0 0.1px rgba(0, 0, 0, 0.3);
 $light-hover-text-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
-$light-colored-font-color: $accent-light-purple;
+$light-colored-font-color: $accent-off-red;
 
 //////////////////////////////
 ///////// DARK MODE //////////
 //////////////////////////////
 // body
 $dark-background-color: #282c35;
-$dark-link-color: $accent-pink;
+$dark-link-color: $accent-orange;
 $dark-lightest-font-color: #fff;
 $dark-light-font-color: #eeeeee;
 $dark-middle-font-color: #c4c3c3;
-$dark-colored-font-color: $accent-pink;
+$dark-colored-font-color: $accent-orange;
 
 $dark-text-shadow: 0 0 0.1px rgba(255, 255, 255, 0.3);
 $dark-hover-text-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
