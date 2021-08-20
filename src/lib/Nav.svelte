@@ -12,9 +12,12 @@
 
 <style lang="scss">
   nav {
+    background: linear-gradient(72deg, #e23500, #ffbc2d);
     display: flex;
     justify-content: space-between;
     align-content: center;
+    height: 78px;
+    padding: 0 20%;
   }
   
   a {

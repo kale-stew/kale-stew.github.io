@@ -1,6 +1,7 @@
 <script>
   import "../app.scss";
   import Nav from "$lib/Nav.svelte";
+  import Footer from "$lib/Footer.svelte";
 </script>
 
 <svelte:head>
@@ -19,12 +20,11 @@
 </svelte:head>
 
 <div class="g-app-wrapper">
-  <div class="g-nav-wrapper">
-    <Nav />
-  </div>
+  <Nav />
   <div class="g-content-wrapper">
     <slot />
   </div>
+  <Footer />
 </div>
 
 <style lang="scss">
@@ -32,14 +32,11 @@
     margin: 0 auto;
   }
 
-  .g-nav-wrapper {
-    background: linear-gradient(72deg, #e23500, #ffbc2d);
-    height: 78px;
-    padding: 0 20%;
-  }
-
   .g-content-wrapper {
     padding: 0 20%;
+    position: absolute;
+    top: 78px;
+    bottom: 20px;
   }
 
 </style>
