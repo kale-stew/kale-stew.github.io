@@ -42,8 +42,11 @@ ul {
   font-size: 18px;
   color: #444;
 
-  &.info {
-    font-size: 14px;
+  &.date {
+    font-size: 13.5px;
     margin-top: 0px;
+    text-transform: uppercase;
+    color: #777;
+    padding: 1px 0 0 4px;
   }
 }

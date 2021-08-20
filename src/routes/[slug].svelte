@@ -21,11 +21,15 @@
 </svelte:head>
 
 <h1 class="title">{post.metadata.title}</h1>
-<p class="info">{date}</p>
+<p class="date">{date}</p>
 {@html post.content}
 
 <style lang="scss">
   h1.title {
     margin-bottom: 0;
+  }
+
+  p.date {
+    margin-bottom: 2.6rem;
   }
 </style>

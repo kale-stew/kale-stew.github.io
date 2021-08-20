@@ -19,11 +19,11 @@
 
 <div>
   <h1>kylieis.online</h1>
-  <p class="info">{posts.length} posts.</p>
   {#each posts as post}
     <a href={`${base}/${post.slug}`}>
       <h2 class="title">{post.metadata.title}</h2>
-      <p>{post.metadata.excerpt}</p>
+      <p class="date">{post.metadata.date}</p>
+      <p class="excerpt">{post.metadata.excerpt}</p>
     </a>
   {/each}
 </div>
@@ -34,8 +34,8 @@
   }
 
   h2.title {
-    margin-top: 32px;
-    margin-bottom: 0;
+    margin-top: 2rem;
+    margin-bottom: 0.4rem;
 
     &:hover {
       color: #f58b12;
@@ -45,5 +45,9 @@
   p {
     color: #555;
     margin: 0;
+  }
+
+  p.excerpt {
+    padding-left: 4px;
   }
 </style>
