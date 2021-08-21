@@ -1,7 +1,8 @@
 ---
-title: Using Formulas to Calculate Weight
+title: Using Notion Formulas to Calculate Weight
 date: 2019-08-16 20:08:47
-excerpt: Things have changed since this post...
+excerpt: Customizing a marketplace template to document all of my outdoor gear in a (potentially overengineered?) Notion database.
+category: notion
 ---
 
 Over the weekend, I decided to formally document all of my backpacking, camping, hiking, and climbing gear. I wanted to create a centralized tracker for a few reasons, the most important few being:

@@ -1,7 +1,7 @@
 ---
 title: Understanding the TypeScript Compiler
 date: 2020-05-19 15:12:02
-excerpt: I have no idea what I'm doing
+excerpt: Working to better understand the language and how it differs from my first love, JavaScript.
 ---
 
 I am trying to thoroughly test a library that has TypeScript support, but too many use cases to accurately track without contacting hundreds of thousands of consumers of said library to ensure we thoroughly understand it's many, many use cases.

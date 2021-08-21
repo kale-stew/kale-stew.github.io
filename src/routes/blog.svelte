@@ -2,7 +2,7 @@
   import { base } from "$app/paths";
 
   export async function load({ fetch }) {
-    const posts = await fetch(`${base}/index.json`).then((r) => r.json());
+    const posts = await fetch(`${base}/blog.json`).then((r) => r.json());
     return {
       props: { posts },
     };
@@ -17,22 +17,23 @@
   <title>kylieis.online · Blog</title>
 </svelte:head>
 
-<div>
-  <h1>kylieis.online</h1>
-  {#each posts as post}
+<h1>Blog</h1>
+<h4>Long-form Twitter.</h4>
+
+{#each posts as post}
+  <div class="blog-card">
     <a href={`${base}/${post.slug}`}>
       <h2 class="title">{post.metadata.title}</h2>
-      <p class="date">{post.metadata.date}</p>
+      <p class="labels">
+        {post.metadata.date.toUpperCase()}
+        {post.metadata.category ? ` ·  ${post.metadata.category}` : ""}
+      </p>
       <p class="excerpt">{post.metadata.excerpt}</p>
     </a>
-  {/each}
-</div>
+  </div>
+{/each}
 
 <style lang="scss">
-  h1 {
-    margin-bottom: 0;
-  }
-
   h2.title {
     margin-top: 2rem;
     margin-bottom: 0.4rem;
@@ -42,12 +43,32 @@
     }
   }
 
-  p {
+  h4 {
+    font-size: 17px;
     color: #555;
-    margin: 0;
+  }
+
+  .labels {
+    display: flex;
+    font-size: 13.5px;
+    margin-top: 0px;
+    padding: 1px 0 0 4px;
+  }
+
+  .blog-card {
+    &.last {
+      padding-bottom: 6.5rem;
+    }
+  }
+
+  p {
+    color: #777;
   }
 
   p.excerpt {
+    font-style: italic;
+    margin-top: 0.2rem;
     padding-left: 4px;
+    max-width: 37rem;
   }
 </style>

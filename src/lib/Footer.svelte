@@ -30,7 +30,7 @@
 
 <style lang="scss">
   .footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     display: flex;
@@ -46,5 +46,10 @@
   a {
     font-size: 14px;
     margin: 0 2rem;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 </style>

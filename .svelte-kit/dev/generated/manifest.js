@@ -10,11 +10,11 @@ const c = [
 const d = decodeURIComponent;
 
 export const routes = [
-	// src/routes/index.json.js
-	[/^\/index\.json$/],
-
 	// src/routes/index.svelte
 	[/^\/$/, [c[0], c[2]], [c[1]]],
+
+	// src/routes/blog.json.js
+	[/^\/blog\.json$/],
 
 	// src/routes/images/dune-otis.jpg
 	[/^\/images\/dune-otis\/?$/],

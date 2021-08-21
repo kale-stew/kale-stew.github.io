@@ -19,24 +19,17 @@
   />
 </svelte:head>
 
-<div class="g-app-wrapper">
-  <Nav />
-  <div class="g-content-wrapper">
-    <slot />
-  </div>
-  <Footer />
+<Nav />
+<div class="g-content-wrapper">
+  <slot />
 </div>
+<Footer />
 
 <style lang="scss">
-  .g-app-wrapper {
-    margin: 0 auto;
-  }
-
   .g-content-wrapper {
     padding: 0 20%;
     position: absolute;
     top: 78px;
     bottom: 20px;
   }
-
 </style>
