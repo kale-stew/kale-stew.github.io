@@ -1,18 +1,18 @@
 <script context="module">
-  import { base } from "$app/paths";
+  import { base } from '$app/paths'
 
   export async function load({ page, fetch }) {
-    const slug = page.params.slug;
-    const post = await fetch(`${base}/${slug}.json`).then((r) => r.json());
+    const slug = page.params.slug
+    const post = await fetch(`${base}/${slug}.json`).then((r) => r.json())
     return {
       props: { post },
-    };
+    }
   }
 </script>
 
 <script>
-  export let post;
-  let date = post.metadata.date.toUpperCase();
+  export let post
+  let date = post.metadata.date.toUpperCase()
 </script>
 
 <svelte:head>

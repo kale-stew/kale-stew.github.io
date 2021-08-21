@@ -1,5 +1,5 @@
 <script>
-  import { base } from "$app/paths";
+  import { base } from '$app/paths'
 </script>
 
 <div>
@@ -19,11 +19,11 @@
     height: 78px;
     padding: 0 20%;
   }
-  
+
   a {
     text-decoration: none;
   }
-  
+
   h3 {
     margin-bottom: 0px;
     color: white;

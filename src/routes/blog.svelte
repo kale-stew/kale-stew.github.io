@@ -1,16 +1,16 @@
 <script context="module">
-  import { base } from "$app/paths";
+  import { base } from '$app/paths'
 
   export async function load({ fetch }) {
-    const posts = await fetch(`${base}/blog.json`).then((r) => r.json());
+    const posts = await fetch(`${base}/blog.json`).then((r) => r.json())
     return {
       props: { posts },
-    };
+    }
   }
 </script>
 
 <script>
-  export let posts;
+  export let posts
 </script>
 
 <svelte:head>
@@ -21,12 +21,12 @@
 <h4>Long-form Twitter.</h4>
 
 {#each posts as post}
-  <div class="blog-card">
+  <div>
     <a href={`${base}/${post.slug}`}>
       <h2 class="title">{post.metadata.title}</h2>
       <p class="labels">
         {post.metadata.date.toUpperCase()}
-        {post.metadata.category ? ` ·  ${post.metadata.category}` : ""}
+        {post.metadata.category ? ` ·  ${post.metadata.category}` : ''}
       </p>
       <p class="excerpt">{post.metadata.excerpt}</p>
     </a>
@@ -53,12 +53,6 @@
     font-size: 13.5px;
     margin-top: 0px;
     padding: 1px 0 0 4px;
-  }
-
-  .blog-card {
-    &.last {
-      padding-bottom: 6.5rem;
-    }
   }
 
   p {

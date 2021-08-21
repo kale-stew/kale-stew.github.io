@@ -1,24 +1,24 @@
 {
   "name": "kylieis.online",
   "description": "Kylie Stewart's personal website",
-  "version": "5.0.0",
+  "version": "5.0.2",
   "author": "Kylie Stewart <kylie@kyliestewart.tech>",
   "bugs": {
     "url": "https://github.com/kale-stew/kale-stew.github.io/issues"
   },
   "scripts": {
-    "build": "rm -rf build && svelte-kit build && touch .svelte-kit/static/build/.nojekyll",
-    "deploy": "npm run build && npx gh-pages -d .svelte-kit/static/build -t true",
+    "build": "svelte-kit build",
     "dev": "svelte-kit dev",
-    "start": "svelte-kit start"
+    "format": "prettier --single-quote --trailing-comma all --write ."
   },
   "devDependencies": {
     "@sveltejs/adapter-node": "next",
-    "@sveltejs/adapter-static": "^1.0.0-next.0",
+    "@sveltejs/adapter-static": "^1.0.0-next.16",
     "@sveltejs/kit": "next",
     "dayjs": "^1.10.4",
-    "gh-pages": "^2.1.1",
     "js-yaml": "^3.14.1",
+    "prettier": "^2.3.2",
+    "prettier-plugin-svelte": "^2.3.1",
     "rehype-highlight": "^4.1.0",
     "rehype-stringify": "^8.0.0",
     "remark-frontmatter": "^3.0.0",

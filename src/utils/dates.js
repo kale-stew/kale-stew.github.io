@@ -13,13 +13,11 @@ const MONTHS = {
   12: 'December',
 }
 
-export const formatDate = date => {
+export const formatDate = (date) => {
   const arr = date.split('/')
   return `${MONTHS[arr[0]]} ${arr[1]}, ${arr[2]}`
 }
 
-export const getMostRecentDate = posts => {
-  return Object.keys(posts)
-    .toString()
-    .split(',')[0]
+export const getMostRecentDate = (posts) => {
+  return Object.keys(posts).toString().split(',')[0]
 }

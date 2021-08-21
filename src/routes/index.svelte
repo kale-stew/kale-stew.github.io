@@ -1,6 +1,6 @@
 <script>
-  import Card from "$lib/Card.svelte";
-  import { update_slot } from "svelte/internal";
+  import Card from '$lib/Card.svelte'
+  import { update_slot } from 'svelte/internal'
 </script>
 
 <svelte:head>
@@ -38,9 +38,9 @@
   }
 
   .intro {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 </style>

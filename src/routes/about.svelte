@@ -1,8 +1,9 @@
 <script>
-  import Gallery from "svelte-image-gallery";
+  // const Gallery = require("svelte-image-gallery");
+  // import * as Gallery from 'svelte-image-gallery'
 
   function handleClick(e) {
-    console.log(e.detail.url);
+    console.log(e.detail.url)
   }
 </script>
 
@@ -17,7 +18,7 @@
 </p>
 
 <p>
-  Currently, I am an enthusiastic <a href="www.notion.com">Notion</a>
+  Currently, I am a <a href="www.notion.so">Notion</a>
   Ambassador that works as a freelance solutions engineer and web developer. If you'd
   like to discuss what working together might look like, please
   <a href="mailto:kylie@kyliestewart.tech">send me an email</a>!
@@ -39,7 +40,7 @@
   housing non-profit, and a sommelier-certified bartender.
 </p>
 
-<div class="gallery-wrapper">
+<!-- <div class="gallery-wrapper">
   <Gallery on:click={handleClick}>
     <img
       alt="Kylie & Kyle standing on a rocky ledge, overlooking a lake with a hazy view of some mountains beyond that."
@@ -72,4 +73,4 @@
   .gallery-wrapper {
     padding: 1.4rem 0 5rem 0;
   }
-</style>
+</style> -->
