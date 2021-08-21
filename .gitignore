@@ -14,15 +14,5 @@ node_modules/
 # Yarn
 yarn-error.log
 
-# Optional eslint cache
-.eslintcache
-
-# Optional REPL history
-.node_repl_history
-
-# gatsby files
-.cache/*
-public/*
-
 # Mac files
 .DS_Store
