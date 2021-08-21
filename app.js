@@ -56,7 +56,7 @@ const d = decodeURIComponent;
 const empty = () => ({});
 
 const manifest = {
-	assets: [{"file":"favicon.ico","size":1150,"type":"image/vnd.microsoft.icon"},{"file":"favicon.png","size":39720,"type":"image/png"},{"file":"robots.txt","size":66,"type":"text/plain"}],
+	assets: [{"file":"CNAME","size":33,"type":null},{"file":"favicon.ico","size":1150,"type":"image/vnd.microsoft.icon"},{"file":"favicon.png","size":39720,"type":"image/png"},{"file":"robots.txt","size":66,"type":"text/plain"}],
 	layout: "src/routes/__layout.svelte",
 	error: ".svelte-kit/build/components/error.svelte",
 	routes: [
