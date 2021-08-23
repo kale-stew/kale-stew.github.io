@@ -33,11 +33,11 @@
 
 <p>
   Prior to freelancing, I was a software engineer and open-source maintainer at
-  a Seattle-based Javascript consultancy named <a href="https://www.formidable.com"
-    >Formidable</a
+  a Seattle-based Javascript consultancy named <a
+    href="https://www.formidable.com">Formidable</a
   >. Before I worked in technology at all, I was a Store Coordinator at
-  <a href="https://www.tesla.com">Tesla</a>, a Volunteer Coordinator for a Denver-based
-  housing non-profit, and a sommelier-certified bartender.
+  <a href="https://www.tesla.com">Tesla</a>, a Volunteer Coordinator for a
+  Denver-based housing non-profit, and a sommelier-certified bartender.
 </p>
 
 <!-- <div class="gallery-wrapper">

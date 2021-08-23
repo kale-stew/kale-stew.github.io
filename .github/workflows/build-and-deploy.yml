@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: build & deploy to gh-pages
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out the repo under $GITHUB_WORKSPACE so this job can access it
+      - uses: actions/checkout@v2
+
+      - name: 🔧 Set remote origin
+        run: git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+
+      - name: 📦 Install node modules
+        run: npm i
+
+      - name: 🚀 Deploy website
+        run: npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
+
