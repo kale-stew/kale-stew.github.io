@@ -7,7 +7,7 @@ category: open-source
 
 So, today I had to write tests for an open-sourced library that is meant to compare deeply nested objects in the context of React, called [`react-fast-compare`](https://github.com/FormidableLabs/react-fast-compare). Essentially, we introduced support for Preact and needed to mirror existing tests written for React components to extend over Preact-compiled components.
 
-In order to better understand this feature (and given that I had no prior experience with Preact), I had to learn what Preact actually is and how it differs from React. This wasn't difficult, as the docs themselves have a versioned "Differences to React" on their [documentation website](https://preactjs.com/guide/v10/differences-to-react). TL; DR: Preact is not meant to be a one-for-one replacement of React because it's so focused on being small. @TODO more
+In order to better understand this feature (and given that I had no prior experience with Preact), I had to learn what Preact actually is and how it differs from React. This wasn't difficult, as the docs themselves have a versioned "Differences to React" on their [documentation website](https://preactjs.com/guide/v10/differences-to-react). TL; DR: Preact is not meant to be a one-for-one replacement of React because it's so focused on being small. <!-- @TODO more -->
 
 So, now understanding the difference between these frameworks, I had to compare testing libraries. We were using [`react-test-renderer`](https://reactjs.org/docs/test-renderer.html) to test a simple React component that was a h1 with a circular reference to its owner, Container, another React component. There's no equal replacement for testing Preact just yet, so I had to look at a few different libraries to get what I was looking for.
 

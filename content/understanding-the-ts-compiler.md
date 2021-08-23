@@ -41,7 +41,7 @@ So, we have a set of tests living inside of a `test/typescript` dir. We are reac
 
 Currently, when we run our `test-ts-usage` script, it is compiling _every_ package we depend on, including testing libraries that aren't being invoked by our test file itself. This is because of the compiler. I am suspicious that it's viewing the project as a single entity, hence the all-encompassing compiling, so let's dive into the compiler to see what options we'll need to flag to get it to treat this single `tsx` file as an independently nested project.
 
-To see the test `tsx` file I am running this usage script against, check out this [gist of typescript tests](@TODO).
+To see the test `tsx` file I am running this usage script against, check out this gist of typescript tests. <!-- TODO: link to gist -->
 
 ### How can we fix this?
 
@@ -63,19 +63,21 @@ According to [this blurb](https://www.typescriptlang.org/docs/handbook/project-r
    }
    ```
 
-2. Add a `tsconfig,json` to the test directory we've pointed to as a separate project. All referenced projects need to have the [`composite` flag](https://www.typescriptlang.org/docs/handbook/project-references.html#composite) enabled "to ensure TypeScript can quickly determine where to find the outputs of the referenced project" (@TODO - annotation?). Now we can isolate our react-specific flags to the
+2. Add a `tsconfig,json` to the test directory we've pointed to as a separate project. All referenced projects need to have the [`composite` flag](https://www.typescriptlang.org/docs/handbook/project-references.html#composite) enabled "to ensure TypeScript can quickly determine where to find the outputs of the referenced project". <!-- TODO - annotation? -->
 
-   ```js
-   /* react-fast-compare/test/typescript/tsconfig.json */
-   {
-    "compilerOptions": {
-      "composite": true,
-      "esModuleInterop": true,
-      "jsx": "react",
-      "target": "ES6"
-    }
-   }
-   ```
+Now we can isolate our react-specific flags to the following:
+
+```js
+/* react-fast-compare/test/typescript/tsconfig.json */
+{
+ "compilerOptions": {
+   "composite": true,
+   "esModuleInterop": true,
+   "jsx": "react",
+   "target": "ES6"
+ }
+}
+```
 
 ### More about `tsconfig`s
 

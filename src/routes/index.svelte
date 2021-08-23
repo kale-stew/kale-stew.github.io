@@ -1,6 +1,5 @@
 <script>
   import Card from '$lib/Card.svelte'
-  import { update_slot } from 'svelte/internal'
 </script>
 
 <svelte:head>
@@ -16,19 +15,19 @@
   <Card
     title="Talks"
     subtitle="All of my talks, in one place."
-    link="www.kylieis.online/talks"
+    link="https://www.kylieis.online/talks"
   />
 
   <Card
     title="kylies.photos"
     subtitle="Hiking photos and trip reports."
-    link="www.kylies.photos"
+    link="https://www.kylies.photos"
   />
 
   <Card
     title="Now"
     subtitle="Recent life updates."
-    link="www.kylieis.online/now"
+    link="https://www.kylieis.online/now"
   />
 </div>
 

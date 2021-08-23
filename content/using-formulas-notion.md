@@ -39,11 +39,11 @@ Properties I got rid of
 
 Hinging around the `Category` property, I've created a few different views of this Gear table to serve as a packing list of sorts for various activities.
 
-![List of views](../static/img/gear-views.png)
+<!-- ![List of views](../static/img/gear-views.png) -->
 
 When one navigates to the view, it's filtered down to the appropriate category and I've hidden that property column entirely to clean up the view.
 
-![14er packing list](../static/img/gear-14er-list.png)
+<!-- ![14er packing list](../static/img/gear-14er-list.png) -->
 
 ## In Conclusion
 

@@ -18,7 +18,7 @@
 </p>
 
 <p>
-  Currently, I am a <a href="www.notion.so">Notion</a>
+  Currently, I am a <a href="https://www.notion.so">Notion</a>
   Ambassador that works as a freelance solutions engineer and web developer. If you'd
   like to discuss what working together might look like, please
   <a href="mailto:kylie@kyliestewart.tech">send me an email</a>!
@@ -33,10 +33,10 @@
 
 <p>
   Prior to freelancing, I was a software engineer and open-source maintainer at
-  a Seattle-based Javascript consultancy named <a href="www.formidable.com"
+  a Seattle-based Javascript consultancy named <a href="https://www.formidable.com"
     >Formidable</a
   >. Before I worked in technology at all, I was a Store Coordinator at
-  <a href="www.tesla.com">Tesla</a>, a Volunteer Coordinator for a Denver-based
+  <a href="https://www.tesla.com">Tesla</a>, a Volunteer Coordinator for a Denver-based
   housing non-profit, and a sommelier-certified bartender.
 </p>
 

@@ -7,19 +7,19 @@
     <a href="mailto:kylie@kyliestewart.tech">
       <Icon name="paperplane" desription="Click here to send Kylie an email." />
     </a>
-    <a href="http://linkedin.com/in/kylieastewart"
+    <a href="https://linkedin.com/in/kylieastewart"
       ><Icon
         name="linkedin"
         description="Click here to connect with Kylie on LinkedIn."
       /></a
     >
-    <a href="www.twitter.com/kyliestew"
+    <a href="https://www.twitter.com/kyliestew"
       ><Icon
         name="twitter"
         description="Click here to follow Kylie on Twitter."
       /></a
     >
-    <a href="http://instagram.com/kalestews"
+    <a href="https://instagram.com/kalestews"
       ><Icon
         name="instagram"
         description="Click here to follow Kylie on Instagram."
