@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Testing Preact in a React-Focused Codebase</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css" data-svelte="svelte-b0idxc"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oxygen" data-svelte="svelte-b0idxc"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Mono" data-svelte="svelte-b0idxc">
+
+		
+
+		<link rel="modulepreload" href="/internal/start-2f6e92c7.js">
+		<link rel="modulepreload" href="/internal/chunks/vendor-50d67180.js">
+		<link rel="modulepreload" href="/internal/chunks/paths-28a87002.js">
+		<link rel="modulepreload" href="/internal/pages/__layout.svelte-766813b2.js">
+		<link rel="modulepreload" href="/internal/pages/[slug].svelte-516ac371.js">
+		<link rel="stylesheet" href="/internal/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/internal/assets/pages/__layout.svelte-37ba07d1.css">
+		<link rel="stylesheet" href="/internal/assets/pages/[slug].svelte-ecef8022.css">
+
+		<script type="module">
+			import { start } from "/internal/start-2f6e92c7.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/internal/pages/__layout.svelte-766813b2.js"),
+						import("/internal/pages/[slug].svelte-516ac371.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "/testing-preact",
+						query: new URLSearchParams(""),
+						params: {"slug":"testing-preact"}
+					}
+				}
+			});
+		</script>
+  </head>
+  <body>
+    <div id="svelte">
+
+
+
+
+<div><nav class="svelte-1pzvsga"><a href="/" class="svelte-1pzvsga"><h3 class="home svelte-1pzvsga">home</h3></a>
+    <a href="/blog" class="svelte-1pzvsga"><h3 class="blog svelte-1pzvsga">blog</h3></a>
+    <a href="/about" class="svelte-1pzvsga"><h3 class="about svelte-1pzvsga">about</h3></a></nav>
+</div>
+<div class="g-content-wrapper svelte-1c6jjpl">
+
+<div class="post svelte-14ss73z"><h1 class="title svelte-14ss73z">Testing Preact in a React-Focused Codebase</h1>
+  <p class="date svelte-14ss73z">MAY 3, 2020</p>
+  <!-- HTML_TAG_START --><p>So, today I had to write tests for an open-sourced library that is meant to compare deeply nested objects in the context of React, called <a href="https://github.com/FormidableLabs/react-fast-compare"><code>react-fast-compare</code></a>. Essentially, we introduced support for Preact and needed to mirror existing tests written for React components to extend over Preact-compiled components.</p>
+<p>In order to better understand this feature (and given that I had no prior experience with Preact), I had to learn what Preact actually is and how it differs from React. This wasn't difficult, as the docs themselves have a versioned "Differences to React" on their <a href="https://preactjs.com/guide/v10/differences-to-react">documentation website</a>. TL; DR: Preact is not meant to be a one-for-one replacement of React because it's so focused on being small. </p>
+<p>So, now understanding the difference between these frameworks, I had to compare testing libraries. We were using <a href="https://reactjs.org/docs/test-renderer.html"><code>react-test-renderer</code></a> to test a simple React component that was a h1 with a circular reference to its owner, Container, another React component. There's no equal replacement for testing Preact just yet, so I had to look at a few different libraries to get what I was looking for.</p>
+<p>The objective: Test a similarly recursive component within a Container that has been compiled with React.</p>
+<p>Our options:</p>
+<ol>
+<li><a href=""><code>preact-render-to-string</code></a> in combination with <a href=""><code>html-looks-like</code></a></li>
+<li><a href=""><code>preact-jsx-chai</code></a></li>
+<li><a href=""><code>preact-testing-libary</code></a></li>
+</ol>
+<p>Each of the above libraries serves a specific purpose and provides a different output that we can then validate using <code>sinon</code> and <code>assert</code> (the already-preferred testing libraries being used in the same file).</p>
+<p>Let's look at what the existing tests are doing to better understand what we're trying to duplicate:</p>
+<p>Facebook's own <code>react-test-renderer</code>, according to <a href="https://reactjs.org/docs/test-renderer.html">its docs</a>, "provides an individual React renderer that can be used to test pure JavaScript objects without depending on the DOm or a native mobile environment."</p>
+<p>So, to test our React components, we've been using this package to look at the platform view hierarchy (meant to mimick the DOM tree) rendered by React. We'll do the same to test them in Preact, we just need to find a Preact test renderer that suits our needs.</p>
+<p>Given these test components...</p>
+<pre><code class="hljs language-js"><span class="hljs-comment">// component</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChildWithShouldComponentUpdate</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  <span class="hljs-function"><span class="hljs-title">shouldComponentUpdate</span>(<span class="hljs-params">nextProps</span>)</span> {
+    <span class="hljs-comment">// this.props.children is a h1 with a circular reference to its owner, Container</span>
+    <span class="hljs-keyword">return</span> !equal(<span class="hljs-built_in">this</span>.props, nextProps)
+  }
+  <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+  }
+}
+
+<span class="hljs-comment">// container component</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Container</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-keyword">return</span> React.createElement(ChildWithShouldComponentUpdate, {
+      <span class="hljs-attr">children</span>: [
+        React.createElement(<span class="hljs-string">'h1'</span>, <span class="hljs-built_in">this</span>.props.title || <span class="hljs-string">''</span>),
+        React.createElement(<span class="hljs-string">'h2'</span>, <span class="hljs-built_in">this</span>.props.subtitle || <span class="hljs-string">''</span>),
+      ],
+    })
+  }
+}
+</code></pre>
+<p>... combined with these three existing assertions:</p>
+<pre><code class="hljs language-js"><span class="hljs-comment">// test setup</span>
+<span class="hljs-keyword">let</span> sandbox
+<span class="hljs-keyword">let</span> warnStub
+<span class="hljs-keyword">let</span> childRenderSpy
+
+beforeEach(<span class="hljs-function">() =></span> {
+  sandbox = sinon.createSandbox()
+  warnStub = sandbox.stub(<span class="hljs-built_in">console</span>, <span class="hljs-string">'warn'</span>)
+  childRenderSpy = sandbox.spy(
+    ChildWithShouldComponentUpdate.prototype,
+    <span class="hljs-string">'render'</span>,
+  )
+})
+
+afterEach(<span class="hljs-function">() =></span> {
+  sandbox.restore()
+})
+
+<span class="hljs-comment">// test 1</span>
+it(<span class="hljs-string">'compares without warning or errors'</span>, <span class="hljs-function">() =></span> {
+  <span class="hljs-keyword">const</span> testRenderer = ReactTestRenderer.create(React.createElement(Container))
+  testRenderer.update(React.createElement(Container))
+  assert.strictEqual(warnStub.callCount, <span class="hljs-number">0</span>)
+})
+
+<span class="hljs-comment">// test 2</span>
+it(<span class="hljs-string">'elements of same type and props are equal'</span>, <span class="hljs-function">() =></span> {
+  <span class="hljs-keyword">const</span> testRenderer = ReactTestRenderer.create(React.createElement(Container))
+  testRenderer.update(React.createElement(Container))
+  assert.strictEqual(childRenderSpy.callCount, <span class="hljs-number">1</span>)
+})
+
+<span class="hljs-comment">// test 3</span>
+it(<span class="hljs-string">'elements of same type with different props are not equal'</span>, <span class="hljs-function">() =></span> {
+  <span class="hljs-keyword">const</span> testRenderer = ReactTestRenderer.create(React.createElement(Container))
+  testRenderer.update(React.createElement(Container, { <span class="hljs-attr">title</span>: <span class="hljs-string">'New'</span> }))
+  assert.strictEqual(childRenderSpy.callCount, <span class="hljs-number">2</span>)
+})
+</code></pre>
+<p>We can rewrite these assertions and the <code>beforeEach</code> case to render these same components with Preact and validating the same <code>h1</code> and <code>h2</code> elements are making it to the so-called DOM. Our validation library, <code>assert</code>, can compare two objects, so let's try to find a renderer that will return an object for us to assert against.</p>
+<hr>
+<p>Check out the PR <a href="https://github.com/FormidableLabs/react-fast-compare/pull/67">on Github</a>.</p><!-- HTML_TAG_END -->
+</div></div>
+<div class="footer svelte-1ts4n1w"><div class="links svelte-1ts4n1w"><a href="mailto:kylie@kyliestewart.tech" class="svelte-1ts4n1w"><svg focusable="false" width="1rem" height="1rem" viewBox="0 0 24 24"><!-- HTML_TAG_START --><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/><!-- HTML_TAG_END --></svg></a>
+    <a href="https://linkedin.com/in/kylieastewart" class="svelte-1ts4n1w"><svg title="Click here to connect with Kylie on LinkedIn." focusable="false" width="1rem" height="1rem" viewBox="0 0 24 24"><!-- HTML_TAG_START --><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/><!-- HTML_TAG_END --></svg></a>
+    <a href="https://www.twitter.com/kyliestew" class="svelte-1ts4n1w"><svg title="Click here to follow Kylie on Twitter." focusable="false" width="1rem" height="1rem" viewBox="0 0 24 24"><!-- HTML_TAG_START --><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/><!-- HTML_TAG_END --></svg></a>
+    <a href="https://instagram.com/kalestews" class="svelte-1ts4n1w"><svg title="Click here to follow Kylie on Instagram." focusable="false" width="1rem" height="1rem" viewBox="0 0 24 24"><!-- HTML_TAG_START --><path d="M11.984 16.815c2.596 0 4.706-2.111 4.706-4.707 0-1.409-.623-2.674-1.606-3.538-.346-.303-.735-.556-1.158-.748-.593-.27-1.249-.421-1.941-.421s-1.349.151-1.941.421c-.424.194-.814.447-1.158.749-.985.864-1.608 2.129-1.608 3.538 0 2.595 2.112 4.706 4.706 4.706zm.016-8.184c1.921 0 3.479 1.557 3.479 3.478 0 1.921-1.558 3.479-3.479 3.479s-3.479-1.557-3.479-3.479c0-1.921 1.558-3.478 3.479-3.478zm5.223.369h6.777v10.278c0 2.608-2.114 4.722-4.722 4.722h-14.493c-2.608 0-4.785-2.114-4.785-4.722v-10.278h6.747c-.544.913-.872 1.969-.872 3.109 0 3.374 2.735 6.109 6.109 6.109s6.109-2.735 6.109-6.109c.001-1.14-.327-2.196-.87-3.109zm2.055-9h-12.278v5h-1v-5h-1v5h-1v-4.923c-.346.057-.682.143-1 .27v4.653h-1v-4.102c-1.202.857-2 2.246-2 3.824v3.278h7.473c1.167-1.282 2.798-2 4.511-2 1.722 0 3.351.725 4.511 2h7.505v-3.278c0-2.608-2.114-4.722-4.722-4.722zm2.722 5.265c0 .406-.333.735-.745.735h-2.511c-.411 0-.744-.329-.744-.735v-2.53c0-.406.333-.735.744-.735h2.511c.412 0 .745.329.745.735v2.53z"/><!-- HTML_TAG_END --></svg></a></div>
+</div>
+
+
+
+	<script type="application/json" data-type="svelte-data" data-url="/testing-preact.json">{"status":200,"statusText":"","headers":{"content-type":"text/plain;charset=UTF-8"},"body":"{\"metadata\":{\"title\":\"Testing Preact in a React-Focused Codebase\",\"date\":\"May 3, 2020\",\"excerpt\":\"Learning in public taken to a new extreme when I was asked to write tests for a heavily-downloaded open-sourced repository.\",\"category\":\"open-source\"},\"content\":\"\u003Cp\u003ESo, today I had to write tests for an open-sourced library that is meant to compare deeply nested objects in the context of React, called \u003Ca href=\\\"https:\u002F\u002Fgithub.com\u002FFormidableLabs\u002Freact-fast-compare\\\"\u003E\u003Ccode\u003Ereact-fast-compare\u003C\u002Fcode\u003E\u003C\u002Fa\u003E. Essentially, we introduced support for Preact and needed to mirror existing tests written for React components to extend over Preact-compiled components.\u003C\u002Fp\u003E\\n\u003Cp\u003EIn order to better understand this feature (and given that I had no prior experience with Preact), I had to learn what Preact actually is and how it differs from React. This wasn't difficult, as the docs themselves have a versioned \\\"Differences to React\\\" on their \u003Ca href=\\\"https:\u002F\u002Fpreactjs.com\u002Fguide\u002Fv10\u002Fdifferences-to-react\\\"\u003Edocumentation website\u003C\u002Fa\u003E. TL; DR: Preact is not meant to be a one-for-one replacement of React because it's so focused on being small. \u003C\u002Fp\u003E\\n\u003Cp\u003ESo, now understanding the difference between these frameworks, I had to compare testing libraries. We were using \u003Ca href=\\\"https:\u002F\u002Freactjs.org\u002Fdocs\u002Ftest-renderer.html\\\"\u003E\u003Ccode\u003Ereact-test-renderer\u003C\u002Fcode\u003E\u003C\u002Fa\u003E to test a simple React component that was a h1 with a circular reference to its owner, Container, another React component. There's no equal replacement for testing Preact just yet, so I had to look at a few different libraries to get what I was looking for.\u003C\u002Fp\u003E\\n\u003Cp\u003EThe objective: Test a similarly recursive component within a Container that has been compiled with React.\u003C\u002Fp\u003E\\n\u003Cp\u003EOur options:\u003C\u002Fp\u003E\\n\u003Col\u003E\\n\u003Cli\u003E\u003Ca href=\\\"\\\"\u003E\u003Ccode\u003Epreact-render-to-string\u003C\u002Fcode\u003E\u003C\u002Fa\u003E in combination with \u003Ca href=\\\"\\\"\u003E\u003Ccode\u003Ehtml-looks-like\u003C\u002Fcode\u003E\u003C\u002Fa\u003E\u003C\u002Fli\u003E\\n\u003Cli\u003E\u003Ca href=\\\"\\\"\u003E\u003Ccode\u003Epreact-jsx-chai\u003C\u002Fcode\u003E\u003C\u002Fa\u003E\u003C\u002Fli\u003E\\n\u003Cli\u003E\u003Ca href=\\\"\\\"\u003E\u003Ccode\u003Epreact-testing-libary\u003C\u002Fcode\u003E\u003C\u002Fa\u003E\u003C\u002Fli\u003E\\n\u003C\u002Fol\u003E\\n\u003Cp\u003EEach of the above libraries serves a specific purpose and provides a different output that we can then validate using \u003Ccode\u003Esinon\u003C\u002Fcode\u003E and \u003Ccode\u003Eassert\u003C\u002Fcode\u003E (the already-preferred testing libraries being used in the same file).\u003C\u002Fp\u003E\\n\u003Cp\u003ELet's look at what the existing tests are doing to better understand what we're trying to duplicate:\u003C\u002Fp\u003E\\n\u003Cp\u003EFacebook's own \u003Ccode\u003Ereact-test-renderer\u003C\u002Fcode\u003E, according to \u003Ca href=\\\"https:\u002F\u002Freactjs.org\u002Fdocs\u002Ftest-renderer.html\\\"\u003Eits docs\u003C\u002Fa\u003E, \\\"provides an individual React renderer that can be used to test pure JavaScript objects without depending on the DOm or a native mobile environment.\\\"\u003C\u002Fp\u003E\\n\u003Cp\u003ESo, to test our React components, we've been using this package to look at the platform view hierarchy (meant to mimick the DOM tree) rendered by React. We'll do the same to test them in Preact, we just need to find a Preact test renderer that suits our needs.\u003C\u002Fp\u003E\\n\u003Cp\u003EGiven these test components...\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"hljs language-js\\\"\u003E\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F component\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-class\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Eclass\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title\\\"\u003EChildWithShouldComponentUpdate\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Eextends\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title\\\"\u003EReact\u003C\u002Fspan\u003E.\u003Cspan class=\\\"hljs-title\\\"\u003EComponent\u003C\u002Fspan\u003E \u003C\u002Fspan\u003E{\\n  \u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-title\\\"\u003EshouldComponentUpdate\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-params\\\"\u003EnextProps\u003C\u002Fspan\u003E)\u003C\u002Fspan\u003E {\\n    \u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F this.props.children is a h1 with a circular reference to its owner, Container\u003C\u002Fspan\u003E\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E !equal(\u003Cspan class=\\\"hljs-built_in\\\"\u003Ethis\u003C\u002Fspan\u003E.props, nextProps)\\n  }\\n  \u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-title\\\"\u003Erender\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-params\\\"\u003E\u003C\u002Fspan\u003E)\u003C\u002Fspan\u003E {\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-literal\\\"\u003Enull\u003C\u002Fspan\u003E\\n  }\\n}\\n\\n\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F container component\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-class\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Eclass\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title\\\"\u003EContainer\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Eextends\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title\\\"\u003EReact\u003C\u002Fspan\u003E.\u003Cspan class=\\\"hljs-title\\\"\u003EComponent\u003C\u002Fspan\u003E \u003C\u002Fspan\u003E{\\n  \u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-title\\\"\u003Erender\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-params\\\"\u003E\u003C\u002Fspan\u003E)\u003C\u002Fspan\u003E {\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E React.createElement(ChildWithShouldComponentUpdate, {\\n      \u003Cspan class=\\\"hljs-attr\\\"\u003Echildren\u003C\u002Fspan\u003E: [\\n        React.createElement(\u003Cspan class=\\\"hljs-string\\\"\u003E'h1'\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-built_in\\\"\u003Ethis\u003C\u002Fspan\u003E.props.title || \u003Cspan class=\\\"hljs-string\\\"\u003E''\u003C\u002Fspan\u003E),\\n        React.createElement(\u003Cspan class=\\\"hljs-string\\\"\u003E'h2'\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-built_in\\\"\u003Ethis\u003C\u002Fspan\u003E.props.subtitle || \u003Cspan class=\\\"hljs-string\\\"\u003E''\u003C\u002Fspan\u003E),\\n      ],\\n    })\\n  }\\n}\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E... combined with these three existing assertions:\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"hljs language-js\\\"\u003E\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F test setup\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E sandbox\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E warnStub\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E childRenderSpy\\n\\nbeforeEach(\u003Cspan class=\\\"hljs-function\\\"\u003E() =\u003E\u003C\u002Fspan\u003E {\\n  sandbox = sinon.createSandbox()\\n  warnStub = sandbox.stub(\u003Cspan class=\\\"hljs-built_in\\\"\u003Econsole\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-string\\\"\u003E'warn'\u003C\u002Fspan\u003E)\\n  childRenderSpy = sandbox.spy(\\n    ChildWithShouldComponentUpdate.prototype,\\n    \u003Cspan class=\\\"hljs-string\\\"\u003E'render'\u003C\u002Fspan\u003E,\\n  )\\n})\\n\\nafterEach(\u003Cspan class=\\\"hljs-function\\\"\u003E() =\u003E\u003C\u002Fspan\u003E {\\n  sandbox.restore()\\n})\\n\\n\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F test 1\u003C\u002Fspan\u003E\\nit(\u003Cspan class=\\\"hljs-string\\\"\u003E'compares without warning or errors'\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-function\\\"\u003E() =\u003E\u003C\u002Fspan\u003E {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E testRenderer = ReactTestRenderer.create(React.createElement(Container))\\n  testRenderer.update(React.createElement(Container))\\n  assert.strictEqual(warnStub.callCount, \u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E)\\n})\\n\\n\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F test 2\u003C\u002Fspan\u003E\\nit(\u003Cspan class=\\\"hljs-string\\\"\u003E'elements of same type and props are equal'\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-function\\\"\u003E() =\u003E\u003C\u002Fspan\u003E {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E testRenderer = ReactTestRenderer.create(React.createElement(Container))\\n  testRenderer.update(React.createElement(Container))\\n  assert.strictEqual(childRenderSpy.callCount, \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E)\\n})\\n\\n\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F test 3\u003C\u002Fspan\u003E\\nit(\u003Cspan class=\\\"hljs-string\\\"\u003E'elements of same type with different props are not equal'\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-function\\\"\u003E() =\u003E\u003C\u002Fspan\u003E {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E testRenderer = ReactTestRenderer.create(React.createElement(Container))\\n  testRenderer.update(React.createElement(Container, { \u003Cspan class=\\\"hljs-attr\\\"\u003Etitle\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-string\\\"\u003E'New'\u003C\u002Fspan\u003E }))\\n  assert.strictEqual(childRenderSpy.callCount, \u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E)\\n})\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003EWe can rewrite these assertions and the \u003Ccode\u003EbeforeEach\u003C\u002Fcode\u003E case to render these same components with Preact and validating the same \u003Ccode\u003Eh1\u003C\u002Fcode\u003E and \u003Ccode\u003Eh2\u003C\u002Fcode\u003E elements are making it to the so-called DOM. Our validation library, \u003Ccode\u003Eassert\u003C\u002Fcode\u003E, can compare two objects, so let's try to find a renderer that will return an object for us to assert against.\u003C\u002Fp\u003E\\n\u003Chr\u003E\\n\u003Cp\u003ECheck out the PR \u003Ca href=\\\"https:\u002F\u002Fgithub.com\u002FFormidableLabs\u002Freact-fast-compare\u002Fpull\u002F67\\\"\u003Eon Github\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\"}"}</script>
+</div>
+  </body>
+</html>
