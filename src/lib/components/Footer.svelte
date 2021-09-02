@@ -1,5 +1,5 @@
 <script>
-  import Icon from '$lib/Icon.svelte'
+  import Icon from '$lib/components/Icon.svelte'
 </script>
 
 <div class="footer">
