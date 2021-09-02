@@ -21,6 +21,11 @@ jobs:
       - name: 📦 Install node modules
         run: npm i
 
-      - name: 🚀 Deploy website
-        run: npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
+      - name: 👷🏻‍♀️ Build website
+        run: npm run build
 
+      - name: 🐈 Add nojekyll, override Github Pages' style
+        run: touch ./build/.nojekyll
+
+      - name: 🚀 Deploy website
+        run: gh-pages -d build -u "github-actions-bot <support+actions@github.com>"

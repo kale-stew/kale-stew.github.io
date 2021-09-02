@@ -7,8 +7,8 @@
     "url": "https://github.com/kale-stew/kale-stew.github.io/issues"
   },
   "scripts": {
-    "build": "svelte-kit build",
-    "deploy": "npm run build && gh-pages -d build",
+    "build": "svelte-kit build && echo 'kylieis.online' > ./build/CNAME",
+    "deploy": "npm run build && touch ./build/.nojekyll && gh-pages -d build",
     "dev": "svelte-kit dev",
     "format": "prettier --single-quote --trailing-comma all --write ."
   },
