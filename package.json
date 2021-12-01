@@ -1,39 +1,24 @@
 {
   "name": "kylieis.online",
   "description": "Kylie Stewart's personal website",
-  "version": "5.0.2",
+  "version": "5.5.2",
   "author": "Kylie Stewart <kylie@kyliestewart.tech>",
   "bugs": {
     "url": "https://github.com/kale-stew/kale-stew.github.io/issues"
   },
   "scripts": {
-    "build": "svelte-kit build && echo 'kylieis.online' > ./build/CNAME",
-    "deploy": "npm run build && touch ./build/.nojekyll && gh-pages -d build",
-    "dev": "svelte-kit dev",
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
     "format": "prettier --single-quote --trailing-comma all --write ."
   },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3"
+  },
   "devDependencies": {
-    "@sveltejs/adapter-node": "next",
-    "@sveltejs/adapter-static": "^1.0.0-next.16",
-    "@sveltejs/kit": "next",
-    "dayjs": "^1.10.4",
     "gh-pages": "^3.2.3",
-    "js-yaml": "^3.14.1",
-    "prettier": "^2.3.2",
-    "prettier-plugin-svelte": "^2.3.1",
-    "rehype-highlight": "^4.1.0",
-    "rehype-stringify": "^8.0.0",
-    "remark-frontmatter": "^3.0.0",
-    "remark-gfm": "^1.0.0",
-    "remark-parse": "^9.0.0",
-    "remark-rehype": "^8.0.0",
-    "sass": "^1.0.0",
-    "svelte": "^3.29.0",
-    "svelte-image-gallery": "^1.3.0",
-    "svelte-preprocess": "^4.0.0",
-    "to-vfile": "^6.1.0",
-    "unified": "^9.2.1",
-    "vite": "^2.1.0"
+    "prettier": "^2.3.2"
   },
   "keywords": [
     "personal site"
@@ -43,5 +28,16 @@
     "type": "git",
     "url": "git+https://github.com/kale-stew/kale-stew.github.io.git"
   },
-  "type": "module"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

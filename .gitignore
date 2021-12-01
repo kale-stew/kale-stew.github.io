@@ -6,8 +6,6 @@ yarn-error.log*
 
 # production
 /build
-/.svelte
-/.svelte-kit
 
 # misc
 .DS_Store
