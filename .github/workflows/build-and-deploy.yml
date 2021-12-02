@@ -24,8 +24,5 @@ jobs:
       - name: 👷🏻‍♀️ Build website
         run: npm run build
 
-      - name: 🐈 Add nojekyll, override Github Pages' style
-        run: touch ./build/.nojekyll
-
       - name: 🚀 Deploy website
-        run: gh-pages -d build -u "github-actions-bot <support+actions@github.com>"
+        run: npm run deploy
