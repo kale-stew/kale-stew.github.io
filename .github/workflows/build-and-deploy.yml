@@ -25,4 +25,4 @@ jobs:
         run: npm run build
 
       - name: 🚀 Deploy website
-        run: npm run deploy
+        run: npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
