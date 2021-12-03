@@ -10,14 +10,35 @@ ReactDOM.render(
     <>
       <Header />
       <div className="content">
-        <div className="gifWrapper">
-        <img
-          src="https://media.giphy.com/media/B8ody8egx8JkA/giphy.gif"
-          alt="Gob from Arrested Development throwing dead doves at the board of directors"
-          height="200"
+        <div className="aboutWrapper">
+          <img
+            src="/img/headshot.jpg"
+            alt="A photo of Kylie Stewart."
+            className="headshot"
           />
+          <div className="introText">
+            <h1>Hi! 👋 I'm Kylie</h1>
+            <h3>web developer & mountaineer</h3>
           </div>
-        <p>Almost done...</p>
+        </div>
+        <p>Here are some of my projects:</p>
+        <ul>
+          {/* {projects.map(proj) => (<a href={proj.href} alt={proj.alt}><li>{proj.name}</li></a>)} */}
+          <a
+            href="https://www.kylieis.online/now"
+            alt="Visit a page that summarizes recent happenings, like what I'm currently reading or listening to."
+          >
+            <li>What I'm Doing Now</li>
+          </a>
+
+          <a href="https://kylieis.online/talks" alt="">
+            <li>Tech Talks</li>
+          </a>
+
+          <a href="https://kylies.photos" alt="">
+            <li>kylies.photos</li>
+          </a>
+        </ul>
       </div>
       <Footer />
     </>
