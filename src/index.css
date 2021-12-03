@@ -93,14 +93,14 @@ li {
 }
 
 .aboutWrapper {
-  margin-top: 8rem;
+  margin-top: 5rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
 .headshot {
-  height: 400px;
+  height: 325px;
   border-radius: 20rem;
 }
 
