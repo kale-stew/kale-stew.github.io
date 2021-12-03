@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: build & deploy to gh-pages
+    name: build website
     runs-on: ubuntu-latest
     steps:
       # Checks-out the repo under $GITHUB_WORKSPACE so this job can access it
@@ -24,5 +24,12 @@ jobs:
       - name: 👷🏻‍♀️ Build website
         run: npm run build
 
+  deploy:
+    name: deploy to gh-pages
+    runs-on: ubuntu-latest
+    steps:
       - name: 🚀 Deploy website
-        run: npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./build
