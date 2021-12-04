@@ -7,9 +7,10 @@
     "url": "https://github.com/kale-stew/kale-stew.github.io/issues"
   },
   "scripts": {
-    "dev": "react-scripts start",
-    "build": "react-scripts build",
     "format": "prettier --single-quote --trailing-comma all --write .",
+    "dev": "react-scripts start",
+    "build": "npm run clean && react-scripts build",
+    "clean": "rm -rf build",
     "deploy": "npm run build && gh-pages -d build"
   },
   "dependencies": {
