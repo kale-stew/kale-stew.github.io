@@ -31,9 +31,9 @@ ReactDOM.render(
             <li>What I'm Doing Now</li>
           </a>
 
-          <a href="https://kylieis.online/talks" alt="">
+          {/* <a href="https://kylieis.online/talks" alt="">
             <li>Tech Talks</li>
-          </a>
+          </a> */}
 
           <a href="https://kylies.photos" alt="">
             <li>kylies.photos</li>
