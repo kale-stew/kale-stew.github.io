@@ -25,7 +25,7 @@ ReactDOM.render(
         <ul>
           {/* {projects.map(proj) => (<a href={proj.href} alt={proj.alt}><li>{proj.name}</li></a>)} */}
           <a
-            href="https://www.kylieis.online/now"
+            href="https://kylieis.online/now"
             alt="Visit a page that summarizes recent happenings, like what I'm currently reading or listening to."
           >
             <li>What I'm Doing Now</li>
