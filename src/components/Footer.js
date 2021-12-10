@@ -2,7 +2,7 @@ import React from 'react'
 import { FaGithub, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa'
 import { MdOutlineMail } from 'react-icons/md'
 
-import { SocialLinks } from '../constants'
+import SocialLinks from '../data/socials.json'
 
 const color = 'white'
 
@@ -20,7 +20,7 @@ export const Footer = () => (
     <a href={SocialLinks.Github}>
       <FaGithub color={color} />
     </a>
-    <a href={SocialLinks.Email} network="email">
+    <a href={SocialLinks.PersonalEmail} network="email">
       <MdOutlineMail color={color} />
     </a>
   </footer>

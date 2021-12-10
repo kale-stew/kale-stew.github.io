@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Card } from './components/Card'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
-import Projects from './projects'
+import Projects from './data/projects.json'
 
 import './index.css'
 

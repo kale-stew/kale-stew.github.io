@@ -1,26 +1,3 @@
-module.exports = {
-  SocialLinks: {
-    Email: 'kylie@hey.com',
-    Github: 'https://github.com/kale-stew',
-    Homepage: 'https://kylieis.online',
-    Instagram: 'https://instagram.com/kalestews',
-    LinkedIn: 'https://www.linkedin.com/in/kylieastewart/',
-    Twitter: 'https://twitter.com/kyliestew',
-  },
-  SiteTitle: 'Kylie is Online',
-  SiteUrl: 'kylieis.online',
-  AuthorName: 'Kylie Stewart',
-  Hobbies: [
-    'hike with my dog, Otis',
-    'bake gluten-free goods',
-    'climb 14,000+ foot peaks',
-    'create generative art',
-    'take pictures of my dog, Otis',
-    'go rock climbing',
-    'doomscroll on Twitter',
-    'complete samurai sudoku puzzles',
-    'backpack through slot canyons',
-    'learn new vegan recipes',
-  ],
-  ga: 'UA-110206200-3',
-}
+export const GA_STRING = 'UA-110206200-3'
+
+export const SITE_NAME = 'kylieis.online'
