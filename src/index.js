@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Card } from './components/Card'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
+import Projects from './projects'
 
 import './index.css'
 
@@ -21,24 +23,14 @@ ReactDOM.render(
             <h3>web developer & mountaineer</h3>
           </div>
         </div>
-        <p>Here are some of my projects:</p>
-        <ul>
-          {/* {projects.map(proj) => (<a href={proj.href} alt={proj.alt}><li>{proj.name}</li></a>)} */}
-          <a
-            href="https://kylieis.online/now"
-            alt="Visit a page that summarizes recent happenings, like what I'm currently reading or listening to."
-          >
-            <li>What I'm Doing Now</li>
-          </a>
-
-          {/* <a href="https://kylieis.online/talks" alt="">
-            <li>Tech Talks</li>
-          </a> */}
-
-          <a href="https://kylies.photos" alt="">
-            <li>kylies.photos</li>
-          </a>
-        </ul>
+        <p className="projectsDescription">
+          Here are some of the things I've been working on:
+        </p>
+        <div className="projectsWrapper">
+          {Projects.map((item) => (
+            <Card data={item} />
+          ))}
+        </div>
       </div>
       <Footer />
     </>
