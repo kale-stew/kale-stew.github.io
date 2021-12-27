@@ -9,20 +9,20 @@ const socials = SocialLinks[0]
 
 export const Footer = () => (
   <footer className="footer">
-    <a href={socials.Twitter}>
-      <FaTwitter color={color} />
-    </a>
-    <a href={socials.LinkedIn}>
-      <FaLinkedinIn color={color} />
+    <a href={socials.PersonalEmail} network="email">
+      <MdOutlineMail color={color} />
     </a>
     <a href={socials.Instagram}>
       <FaInstagram color={color} />
     </a>
+    <a href={socials.Twitter}>
+      <FaTwitter color={color} />
+    </a>
     <a href={socials.Github}>
       <FaGithub color={color} />
     </a>
-    <a href={socials.PersonalEmail} network="email">
-      <MdOutlineMail color={color} />
+    <a href={socials.LinkedIn}>
+      <FaLinkedinIn color={color} />
     </a>
   </footer>
 )

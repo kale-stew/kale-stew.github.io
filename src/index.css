@@ -49,11 +49,6 @@ a:link,
 a:visited,
 a:active {
   text-decoration: none;
-  color: #e23500;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 h1 {
@@ -89,28 +84,79 @@ li {
 }
 
 .aboutWrapper {
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+  20% {
+    -webkit-transform: translateY(-12px);
+    -ms-transform: translateY(-12px);
+    transform: translateY(-12px);
+  }
+  60% {
+    -webkit-transform: translateY(12px);
+    -ms-transform: translateY(12px);
+    transform: translateY(12px);
+  }
+}
+
 .card {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: auto;
+  background-color: white;
+  padding: 1.5rem;
+
+  /* borders */
+  border-collapse: collapse;
+  border: 1px gainsboro;
+  border-radius: 1rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
+  /* bounce animation */
+  -webkit-animation-duration: 0.75s;
+  animation-duration: 0.75s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+}
+
+.card:hover {
+  cursor: pointer;
+  animation-name: bounce;
+  -moz-animation-name: bounce;
 }
 
 .cardTitle {
+  color: #2b2b2b;
 }
 
 .cardSubtitle {
   padding: 1.2rem 0 0 0;
   margin: 0;
-  color: #d87a00;
+  color: #7a7a7a;
+}
+
+.featuredProjectsTitle {
+  margin: 3rem 0 1rem 0;
+  font-weight: 400;
 }
 
 .headshot {
-  height: 325px;
+  height: 300px;
   border-radius: 20rem;
 }
 
@@ -121,14 +167,20 @@ li {
   justify-content: center;
 }
 
-.projectsDescription {
-  margin: 2.5rem 0;
+.projectLink {
+  color: #e23500;
+}
+
+.projectLink:hover {
+  text-decoration: underline;
 }
 
 .projectsWrapper {
   display: grid;
   grid-gap: 2.5em;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0 3rem;
+  margin-bottom: 6rem;
 }
 
 @media (max-width: 1024px) {
@@ -136,6 +188,10 @@ li {
     flex-direction: column;
     margin-top: 3rem;
     justify-content: center;
+  }
+
+  .featuredProjectsTitle {
+    margin: 3rem 0 0.25rem 0;
   }
 
   .introText {
@@ -152,14 +208,22 @@ li {
   }
 
   .projectsWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 240px;
-    margin-bottom: 8rem;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 2rem 6rem 2rem;
+    margin: 1rem;
   }
 
   ul {
     margin-top: 0;
+  }
+}
+
+@media (max-width: 710px) {
+  .projectsWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 280px;
+    margin-bottom: 4rem;
   }
 }

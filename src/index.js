@@ -21,11 +21,10 @@ ReactDOM.render(
           <div className="introText">
             <h1>Hi! 👋 I'm Kylie</h1>
             <h3>web developer & mountaineer</h3>
+            <h3>based in Colorado</h3>
           </div>
         </div>
-        <p className="projectsDescription">
-          Here are some of the things I've been working on:
-        </p>
+        <h2 className="featuredProjectsTitle">Featured Projects:</h2>
         <div className="projectsWrapper">
           {Projects.map((item) => (
             <Card data={item} />
