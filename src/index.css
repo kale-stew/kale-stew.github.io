@@ -117,7 +117,6 @@ li {
   align-items: flex-start;
   width: auto;
   background-color: white;
-  padding: 1.5rem;
 
   /* borders */
   border-collapse: collapse;
@@ -140,6 +139,10 @@ li {
   -moz-animation-name: bounce;
 }
 
+.cardText {
+  padding: 1.5vh 2vw;
+}
+
 .cardTitle {
   color: #2b2b2b;
 }
@@ -148,6 +151,13 @@ li {
   padding: 1.2rem 0 0 0;
   margin: 0;
   color: #7a7a7a;
+}
+
+.coverImage {
+  object-fit: cover;
+  width: 100%;
+  border-radius: 1rem 1rem 0 0;
+  flex: 2;
 }
 
 .featuredProjectsTitle {
@@ -167,10 +177,6 @@ li {
   justify-content: center;
 }
 
-.projectLink {
-  color: #e23500;
-}
-
 .projectLink:hover {
   text-decoration: underline;
 }
@@ -178,9 +184,11 @@ li {
 .projectsWrapper {
   display: grid;
   grid-gap: 2.5em;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 0 3rem;
-  margin-bottom: 6rem;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 3fr));
+  justify-items: center;
+  width: 65vw;
+  max-width: max-content;
+  margin: 3vh auto 15vh auto;
 }
 
 @media (max-width: 1024px) {
@@ -208,22 +216,11 @@ li {
   }
 
   .projectsWrapper {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0 2rem 6rem 2rem;
-    margin: 1rem;
+    grid-template-columns: repeat(330px, 1fr);
+    max-width: 85vw;
   }
 
   ul {
     margin-top: 0;
-  }
-}
-
-@media (max-width: 710px) {
-  .projectsWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 280px;
-    margin-bottom: 4rem;
   }
 }
